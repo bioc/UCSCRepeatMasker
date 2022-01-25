@@ -1,0 +1,17 @@
+Package: UCSCRepeatMasker
+Type: Package
+Title: UCSC RepeatMasker AnnotationHub resource metadata
+Version: 3.15.0
+Encoding: UTF-8
+Author: Robert Castelo [aut, cre]
+Maintainer: Robert Castelo <robert.castelo@upf.edu>
+Description: Store UCSC RepeatMasker AnnotationHub resource metadata.
+VignetteBuilder: knitr
+License: Artistic-2.0
+Depends: AnnotationHub
+Imports: XML, RCurl, GenomeInfoDb
+Suggests: knitr, rmarkdown, BiocStyle
+biocViews: AnnotationHub, AnnotationData, GenomeAnnotation
+provider: UCSC
+provider_version: 25Jan2022
+RoxygenNote: 7.1.2
