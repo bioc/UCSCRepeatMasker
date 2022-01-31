@@ -63,7 +63,7 @@ makeMetadata_UCSCRepeatMasker <- function()
     RDataClass=rep("GRanges", n),
     DispatchClass=rep("RDS", n),
     Location_Prefix=baseUrl,
-    Tags=rep(paste("RepeatMasker", "UCSC", sep=","), n))
+    Tags=rep(paste("RepeatMasker", "UCSC", sep=":"), n))
 }
 
 library(XML)
