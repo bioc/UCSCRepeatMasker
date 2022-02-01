@@ -1,0 +1,12 @@
+citHeader("To cite package 'UCSCRepeatMasker' in publications use:")
+
+citEntry(entry="Manual",
+  author = personList(as.person("A. Smit"), as.person("R. Hubley"),
+                      as.person("P. Green")),
+  title = "RepeatMasker Open-3.0",
+  year = "1996-2010",
+  url = "https://www.repeatmasker.org",
+  textVersion = paste("A. Smit, R. Hubley, P. Green (1996-2010)",
+                      "RepeatMasker Open-3.0.",
+                      "<URL: https://www.repeatmasker.org>.")
+)

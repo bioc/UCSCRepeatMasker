@@ -23,13 +23,10 @@
 }
 
 \examples{
-\dontrun{
 library(AnnotationHub)
 
 ah <- AnnotationHub()
-rmsk <- query(ah, "RepeatMasker")
-rmsk
-}
+query(ah, "RepeatMasker")
 }
 
 \keyword{package}

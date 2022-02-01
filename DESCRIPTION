@@ -1,15 +1,19 @@
 Package: UCSCRepeatMasker
 Type: Package
 Title: UCSC RepeatMasker AnnotationHub resource metadata
-Version: 3.15.1
-Encoding: UTF-8
-Author: Robert Castelo [aut, cre]
-Maintainer: Robert Castelo <robert.castelo@upf.edu>
 Description: Store UCSC RepeatMasker AnnotationHub resource metadata.
-VignetteBuilder: knitr
+        Provide provenance and citation information for UCSC RepeatMasker
+        AnnotationHub resources. Illustrate in a vignette how to access
+        those resources.
+Version: 3.15.2
+Encoding: UTF-8
+Authors@R: c(person("Robert", "Castelo", role=c("aut", "cre"),
+        email="robert.castelo@upf.edu"), person("Beatriz", "Calvo",
+        role="ctb", email="beatriz.calvo@upf.edu"))
 License: Artistic-2.0
-Depends: AnnotationHub
-Imports: XML, RCurl, GenomeInfoDb
+VignetteBuilder: knitr
+Depends: AnnotationHub, GenomeInfoDb
+Imports: XML, RCurl
 Suggests: knitr, rmarkdown, BiocStyle
 biocViews: AnnotationHub, AnnotationData
 provider: UCSC

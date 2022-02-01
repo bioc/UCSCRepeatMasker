@@ -3,11 +3,14 @@ title: "UCSC RepeatMasker AnnotationHub Resource Metadata"
 author:
 - name: Robert Castelo
   affiliation: 
-  - &id Dept. of Experimental and Health Sciences, Universitat Pompeu Fabra, Barcelona, Spain
+  - &id Dept. of Experimental and Health Sciences,
+    Universitat Pompeu Fabra, Barcelona, Spain
   email: robert.castelo@upf.edu
 package: "`r pkg_ver('UCSCRepeatMasker')`"
 abstract: >
-  Store UCSC RepeatMasker AnnotationHub resource metadata.
+  UCSC RepeatMasker annotations are available as Bioconductor AnnotationHub
+  resources. The UCSCRepeatMasker annotation package stores the metadata for
+  these resources and provides this vignette to illustrate how to use them.
 vignette: >
   %\VignetteIndexEntry{UCSC RepeatMasker AnnotationHub Resource Metadata}
   %\VignetteEngine{knitr::rmarkdown}
@@ -25,7 +28,7 @@ options(width=80)
 
 # Retrieval of UCSC RepeatMasker annotations through AnnotationHub resources
 
-The `UCSCRepeatMasker` package provides metadata for the
+The `UCSCRepeatMasker` package provides metadata for
 `r Biocpkg("AnnotationHub")` resources associated with UCSC RepeatMasker
 annotations. The original data can be found through UCSC download URLs
 `https://hgdownload.soe.ucsc.edu/goldenPath/XXXX/database/rmsk.txt.gz`,
@@ -35,10 +38,16 @@ Details about how those original data were processed into
 file:
 
 ```
+UCSCRepeatMasker/scripts/make-data_UCSCRepeatMasker.R
+```
+while details on how the metadata for those resources has been generated
+can be found in the source file:
+
+```
 UCSCRepeatMasker/scripts/make-metadata_UCSCRepeatMasker.R
 ```
 
-The UCSC RepeatMasker annotations can be retrieved using the
+UCSC RepeatMasker annotations can be retrieved using the
 `r Biocpkg("AnnotationHub")`,
 which is a web resource that provides a central location where genomic files
 (e.g., VCF, bed, wig) and other resources from standard (e.g., UCSC, Ensembl)
@@ -47,22 +56,39 @@ web resource creates and manages a local cache of files retrieved by the user,
 helping with quick and reproducible access.
 
 For example, to list the available UCSC RepeatMasker annotations for the human
-genome we should query the `r Biocpkg("AnnotationHub")` as follows:
+genome, we should first load the `r Biocpkg("AnnotationHub")` package:
 
-```{r message=FALSE, cache=FALSE, eval=FALSE}
+```{r message=FALSE, cache=FALSE}
 library(AnnotationHub)
+```
+and then query the annotation hub as follows:
 
+```{r message=FALSE, cache=FALSE}
 ah <- AnnotationHub()
 query(ah, c("RepeatMasker", "Homo sapiens"))
 ```
 
-We finally retrieve the desired resource with the following notation:
+We can retrieve the desired resource, e.g., UCSC RepeatMasker annotations
+for hg38, using the following syntax:
 
-```{r message=FALSE, cache=FALSE, eval=FALSE}
-rmskhg38 <- ah[["AHXXXX"]]
+```{r message=FALSE, cache=FALSE}
+rmskhg38 <- ah[["AH99003"]]
+rmskhg38
 ```
-where `AHXXXX` is the identifier of the desired resource.
+Note that the data is returned using a `GRanges` object, please consult the
+vignettes from the `r Biocpkg("GenomicRanges")` package for details on how to
+manipulate this type of object. The contents of the 4 metadata columns are
+described at the UCSC Genome Browser web page for the
+[RepeatMasker database schema](https://genome.ucsc.edu/cgi-bin/hgTables?db=hg38&hgta_group=rep&hgta_track=rmsk&hgta_table=rmsk&hgta_doSchema=describe+table+schema).
+Please consult the credits and references sections on that page for information
+on how to cite these data.
 
+The `GRanges` object contains further metadata accessible with the `metadata()`
+method as follows:
+
+```{r message=FALSE, cache=FALSE}
+metadata(rmskhg38)
+```
 
 # Session information
 
