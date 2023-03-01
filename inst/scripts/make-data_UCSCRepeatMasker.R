@@ -55,30 +55,40 @@ processRMSKfile <- function(fname) {
   rmsktbl <- read.table(gzfile(file.path(g, "rmsk.txt.gz")), header=FALSE,
                         sep="\t", colClasses=c("NULL",      ## bin
                                                "integer",   ## swScore
-                                               "NULL",      ## milliDiv
-                                               "NULL",      ## milliDel
-                                               "NULL",      ## milliIns
+                                               "numeric",   ## milliDiv
+                                               "numeric",   ## milliDel
+                                               "numeric",   ## milliIns
                                                "character", ## genoName
                                                "integer",   ## genoStart
                                                "integer",   ## genoEnd
-                                               "NULL",      ## genoLeft
+                                               "integer",   ## genoLeft
                                                "character", ## strand
                                                "character", ## repName
                                                "character", ## repClass
                                                "character", ## repFamily
-                                               "NULL",      ## repStart
-                                               "NULL",      ## repEnd
+                                               "integer",   ## repStart
+                                               "integer",   ## repEnd
+                                               "integer",   ## repLeft
                                                "NULL"       ## id
                                                ))
-  colnames(rmsktbl) <- c("swScore", "genoName", "genoStart", "genoEnd",
-                         "strand", "repName", "repClass", "repFamily")
+  colnames(rmsktbl) <- c("swScore", "milliDiv", "milliDel", "milliIns",
+                         "genoName", "genoStart", "genoEnd", "genoLeft",
+                         "strand", "repName", "repClass", "repFamily",
+                         "repStart", "repEnd", "repLeft")
   rmskGR <- GRanges(seqnames=rmsktbl$genoName,
                     ranges=IRanges(rmsktbl$genoStart+1, rmsktbl$genoEnd),
                     strand=rmsktbl$strand,
                     swScore=rmsktbl$swScore,
+                    milliDiv=rmsktbl$milliDiv,
+                    milliDel=rmsktbl$milliDel,
+                    milliIns=rmsktbl$milliIns,
+                    genoLeft=rmsktbl$genoLeft,
                     repName=rmsktbl$repName,
                     repClass=rmsktbl$repClass,
-                    repFamily=rmsktbl$repFamily)
+                    repFamily=rmsktbl$repFamily,
+                    repStart=rmsktbl$repStart,
+                    repEnd=rmsktbl$repEnd,
+                    repLeft=rmsktbl$repLeft)
   si <- getChromInfoFromUCSC(g, as.Seqinfo=TRUE)
   seqlevels(rmskGR) <- seqlevels(si)
   seqinfo(rmskGR) <- si
