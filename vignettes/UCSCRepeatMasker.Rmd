@@ -3,7 +3,7 @@ title: "UCSC RepeatMasker AnnotationHub Resource Metadata"
 author:
 - name: Robert Castelo
   affiliation: 
-  - &id Dept. of Experimental and Health Sciences,
+  - &id Dept. of Medicine and Life Sciences,
     Universitat Pompeu Fabra, Barcelona, Spain
   email: robert.castelo@upf.edu
 package: "`r pkg_ver('UCSCRepeatMasker')`"
@@ -65,7 +65,7 @@ and then query the annotation hub as follows:
 
 ```{r message=FALSE, cache=FALSE}
 ah <- AnnotationHub()
-query(ah, c("RepeatMasker", "Homo sapiens"))
+query(ah, c("UCSC", "RepeatMasker", "Homo sapiens"))
 ```
 
 We can retrieve the desired resource, e.g., UCSC RepeatMasker annotations
@@ -77,7 +77,7 @@ rmskhg38
 ```
 Note that the data is returned using a `GRanges` object, please consult the
 vignettes from the `r Biocpkg("GenomicRanges")` package for details on how to
-manipulate this type of object. The contents of the 4 metadata columns are
+manipulate this type of object. The contents of the 11 metadata columns are
 described at the UCSC Genome Browser web page for the
 [RepeatMasker database schema](https://genome.ucsc.edu/cgi-bin/hgTables?db=hg38&hgta_group=rep&hgta_track=rmsk&hgta_table=rmsk&hgta_doSchema=describe+table+schema).
 Please consult the credits and references sections on that page for information

@@ -41,7 +41,7 @@
 
 makeMetadata_UCSCRepeatMasker <- function()
 {
-  biocver <- "3.15"
+  biocver <- as.character(BiocManager::version())
   baseUrl <- "https://functionalgenomics.upf.edu/annotationhub/repeatmasker/"
   meta <- .UCSCRepeatMaskerMetadataFromUrl(baseUrl)
   n <- nrow(meta)

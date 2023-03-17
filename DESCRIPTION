@@ -5,7 +5,7 @@ Description: Store UCSC RepeatMasker AnnotationHub resource metadata.
         Provide provenance and citation information for UCSC RepeatMasker
         AnnotationHub resources. Illustrate in a vignette how to access
         those resources.
-Version: 3.15.3
+Version: 3.17.0
 Encoding: UTF-8
 Authors@R: c(person("Robert", "Castelo", role=c("aut", "cre"),
         email="robert.castelo@upf.edu"), person("Beatriz", "Calvo",
@@ -17,5 +17,5 @@ Imports: XML, RCurl
 Suggests: knitr, rmarkdown, BiocStyle
 biocViews: AnnotationHub, AnnotationData
 provider: UCSC
-provider_version: 25Jan2022
-RoxygenNote: 7.1.2
+provider_version: 17Mar2023
+RoxygenNote: 7.2.3

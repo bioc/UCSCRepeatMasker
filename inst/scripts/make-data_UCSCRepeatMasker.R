@@ -49,10 +49,11 @@ citdata <- bibentry(bibtype="Manual",
 #' Process a rmsk.txt.gz file from UCSC and store its
 #' data into a GRanges object
 #'
-#' @param fname path to the rmsk.txt.gz file
-processRMSKfile <- function(fname) {
+#' @param g genome build path to the rmsk.txt.gz file
+#' @param fname filename of the RepeatMasker file, typically rmsk.txt.gz
+processRMSKfile <- function(g, fname) {
   message(sprintf("processing %s\n",fname))
-  rmsktbl <- read.table(gzfile(file.path(g, "rmsk.txt.gz")), header=FALSE,
+  rmsktbl <- read.table(gzfile(file.path(g, fname)), header=FALSE,
                         sep="\t", colClasses=c("NULL",      ## bin
                                                "integer",   ## swScore
                                                "numeric",   ## milliDiv
@@ -99,14 +100,6 @@ processRMSKfile <- function(fname) {
 ## fetch all current genome versions at UCSC
 allg <- ucscGenomes(TRUE)
 
-## for some strange reason the release date for hg19,
-## hg38, mm10 and mm39 is missing
-mt <- match(c("hg19", "hg38", "mm10", "mm39"), allg$db)
-stopifnot(all(!is.na(mt))) ## QC
-allg$date[mt] <- c("Feb. 2009", "Jun. 2013", "Dec. 2011", "Jun. 2020")
-## fix release date for wuhCor1
-mt <- match("wuhCor1", allg$db)
-allg$date[mt] <- "Jan. 2020"
 ## fix release date for eboVir3
 mt <- match("eboVir3", allg$db)
 allg$date[mt] <- "Jun. 2014"
@@ -156,7 +149,9 @@ for (i in 1:length(gbyo)) {
         rmskGRfname <- file.path(g, sprintf("rmsk.%s.%s.rds", g,
                                             format(moddate, "%b%Y")))
         if (!file.exists(rmskGRfname)) {
-          rmskGR <- processRMSKfile(file.path(g, basename(rmskurl)))
+          rmskGR <- processRMSKfile(g, basename(rmskurl))
+          if (file.exists(file.path(g, basename(rmskurl))))
+            file.rename(file.path(g, basename(rmskurl)), file.path(g, sprintf("rmsk.%s.txt.gz", format(moddate, "%b%Y"))))
           mt <- match(g, allg$db)
           refgenomeGD <- GenomeDescription(organism=allg[mt, "organism"],
                                            common_name=allg[mt, "species"],
