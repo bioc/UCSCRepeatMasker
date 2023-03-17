@@ -5,7 +5,7 @@ Description: Store UCSC RepeatMasker AnnotationHub resource metadata.
         Provide provenance and citation information for UCSC RepeatMasker
         AnnotationHub resources. Illustrate in a vignette how to access
         those resources.
-Version: 3.15.4
+Version: 3.15.5
 Encoding: UTF-8
 Authors@R: c(person("Robert", "Castelo", role=c("aut", "cre"),
         email="robert.castelo@upf.edu"), person("Beatriz", "Calvo",
