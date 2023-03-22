@@ -6,7 +6,7 @@
   genomes <- .getSubDirs(baseUrl)
   genomes <- gsub("/", "", genomes)
   metadf <- data.frame(title=character(0),
-                       speciies=character(0),
+                       species=character(0),
                        taxonomyId=integer(0),
                        genome=character(0),
                        sourceUrl=character(0),
