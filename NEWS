@@ -1,6 +1,8 @@
 CHANGES IN VERSION 3.17.2
 -------------------------
 
+USER VISIBLE CHANGES
+
     o Resources now include data from all 11 columns from the UCSC RepeatMasker files rmsk.txt.gz. Scripts in this package have been updated accordingly.
 
     o Added a new resource for the latest updated of the UCSC RepeatMasker file rmsk.txt.gz for hg38, version of October 2022.
